@@ -1,6 +1,7 @@
 #include "../include/inventario.hpp"
 #include "../include/juego.hpp"
 #include "../include/jugador.hpp"
+#include "../include/mapa.hpp"
 
 void IniciarObj(EstadoDelJuego& juego){
     for(int i = 0; i < 8; i++)
@@ -69,7 +70,7 @@ void BotarObj(EstadoDelJuego& juego)
         item.tipo = juego.player.ItemCargado;
 
         item.IsActivo = true;
-        
+
        juego.player.ItemCargado = TipodeItem::Nada;
 
         break;
@@ -77,7 +78,7 @@ void BotarObj(EstadoDelJuego& juego)
 }
 
 void ReiniciarObj(EstadoDelJuego& juego){
-    for(int i = 0; i< 16; i++){
+    for(int i = 0; i< 8; i++){
         inventario& item = juego.item[i];
         if(item.IsActivo){
             item.x = item.Sx;
