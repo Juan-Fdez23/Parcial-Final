@@ -1,7 +1,8 @@
 #include "../include/jugador.hpp"
 #include "../include/mapa.hpp"
 
-void ActualizarPosicionDelJugador(EstadoDelJuego juego, char tecla){
+
+void APDJ(EstadoDelJuego& juego, char tecla){
     int nX = juego.player.x;
     int nY = juego.player.y;
 
