@@ -1,5 +1,6 @@
 #include "../include/juego.hpp"
 #include "../include/jugador.hpp"
+#include "../include/mapa.hpp"
 
 void ActualizarTerminal(){
     std::cout << "\033[H";
@@ -113,4 +114,91 @@ char LeerTecla(){
     #endif
 }
 
+void Iniciar_Juego(EstadoDelJuego& juego){
+    #ifdef _WIN32
+    EnableUTF8();
+    #endif
+    
+    EsconderCursor();
+    ActualizarTerminal();
+    
+
+    juego.JuegoEnLoop = true;
+
+    juego.Hb_Actual = 0;
+
+    juego.player.x = 1;
+    juego.player.y = 8;
+    juego.player.hP = 5;
+    juego.Velocidad_Enemigo = 0;
+
+    juego.player.ItemCargado =
+    TipodeItem::Nada;
+
+    inHb(juego);
+
+    IniciarObj(juego);
+}
+
+void Shutdown_Game(EstadoDelJuego& juego){
+    MostrarCursor();
+    ActualizarTerminal();
+
+    std::cout << "Gracias por jugar \n";
+}
+
+
+void Juego_Loop(EstadoDelJuego& juego){
+    char tecla = 0;
+    if(TeclaPresionada()){
+        tecla = LeerTecla();
+    }
+
+    if(tecla)
+    {
+        if(tecla == 'x')
+        {
+            juego.JuegoEnLoop = false;
+            return;
+        }
+
+        ActualizarPosicionDelJugador(juego , tecla);
+
+        if(tecla == 'e')
+            TomarObj(juego);
+
+        if(tecla == 'q')
+            BotarObj(juego);
+
+        if(tecla == 'f')
+            AtacarEnemigo(juego);
+    }
+
+    juego.Velocidad_Enemigo++;
+
+    if(juego.Velocidad_Enemigo >= 5)
+    {
+        ActualizarEnemigo(juego);
+
+        juego.Velocidad_Enemigo = 0;
+    }
+
+    ActualizarTerminal();
+
+    DibujarMapa(juego);
+
+    std::cout.flush();
+
+    if(juego.player.hP <= 0)
+    {
+        ActualizarTerminal();
+
+        std::cout
+        << "\n\nGAME OVER\n";
+
+        juego.JuegoEnLoop = false;
+    }
+
+    wait(100);
+}
 
