@@ -8,15 +8,15 @@ void Construir_Hb0(EstadoDelJuego& juego){
 
     char mtemp[r][c] =
     {
-        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','E','.','#'},
+        {'#','#','#','#','#','#','#','#','#','N','#','#','#','#','#','#','#','#','#','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','#','#','#','#','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'W','.','.','.','.','.','.','.','.','P','.','.','.','.','.','.','.','.','.','E'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-        {'#','P','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
     };
 
@@ -31,11 +31,12 @@ void Construir_Hb0(EstadoDelJuego& juego){
     room.Este.THb = 1;
     room.Este.requerimiento = R_Salidas::NA;
 
-    room.esEnemigo = true;
+    room.Oeste.THb = 2;
+    room.Oeste.requerimiento = R_Salidas::NA;
 
-    room.entidad1.x = 15;
-    room.entidad1.y = 5;
-    room.entidad1.IsVivo = true;
+    room.Norte.THb = 3;
+    room.Norte.requerimiento = R_Salidas::Llave; 
+
 }
 
 void Construir_Hb1(EstadoDelJuego& juego){
@@ -44,13 +45,13 @@ void Construir_Hb1(EstadoDelJuego& juego){
     char mtemp[r][c] =
     {
         {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-        {'#','W','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','T','T','.','.','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','T','T','.','.','.','.','.','.','.','#'},
-        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','#','#','.','.','.','.','.','.','.','.','.','#'},
+        {'W','.','.','.','.','.','.','#','.','.','#','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','#','.','.','.','.','#','.','.','.','.','.','.','.','#'},
+        {'#','#','#','#','#','#','.','.','.','.','.','.','#','#','.','.','.','.','.','#'},
         {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
         {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
     };
@@ -66,12 +67,166 @@ void Construir_Hb1(EstadoDelJuego& juego){
     room.Oeste.THb = 0;
     room.Oeste.requerimiento= R_Salidas::NA;
 
-    room.esEnemigo = false;
+    room.esEnemigo = true;
+    room.entidad1[0].x = 15;
+    room.entidad1[0].y = 5;
+    room.entidad1[0].IsVivo = true;
+    room.entidad1[0].TipoE = 0;
 }
+
+void Construir_Hb2(EstadoDelJuego& juego){
+    Hb& room = juego.habitaciones[2];
+
+    char mtemp[r][c] =
+    {
+        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','#','.','#','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','#','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','E'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','#','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
+    };
+
+    for(int y = 0; y < r; y++)
+    {
+        for(int x = 0; x < c; x++)
+        {
+            room.matriz[y][x] = mtemp[y][x];
+        }
+    }
+
+    room.Este.THb = 0;
+    room.Este.requerimiento= R_Salidas::NA;
+
+    room.esEnemigo = true;
+    room.entidad1[1].x = 2;
+    room.entidad1[1].y = 5;
+    room.entidad1[1].IsVivo = true;
+    room.entidad1[1].TipoE = 1;
+}
+
+void Construir_Hb3(EstadoDelJuego& juego){
+    Hb& room = juego.habitaciones[3];
+
+    char mtemp[r][c] =
+    {
+        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','#','.','.','.','.','.','.','.','.','#','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','E'},
+        {'#','.','.','.','#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','#','#','#','#','#','#','#','#','#','S','#','#','#','#','#','#','#','#','#'}
+    };
+
+    for(int y = 0; y < r; y++)
+    {
+        for(int x = 0; x < c; x++)
+        {
+            room.matriz[y][x] = mtemp[y][x];
+        }
+    }
+
+    room.Sur.THb = 0;
+    room.Sur.requerimiento= R_Salidas::NA;
+
+    room.Este.THb = 4;
+    room.Este.requerimiento = R_Salidas::Enemigo_Muerto;
+
+    room.esEnemigo = true;
+    room.entidad1[1].x = 19;
+    room.entidad1[1].y = 2;
+    room.entidad1[1].IsVivo = true;
+    room.entidad1[1].TipoE = 2;
+
+}
+
+void Construir_Hb4(EstadoDelJuego& juego){
+    Hb& room = juego.habitaciones[4];
+
+    char mtemp[r][c] =
+    {
+        {'#','#','#','#','#','#','#','#','#','N','#','#','#','#','#','#','#','#','#','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','#','.','.','.','.','.','.','.','.','#','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'W','.','.','.','.','.','.','#','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
+        {'#','.','.','.','.','#','.','.','.','.','#','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
+    };
+
+    for(int y = 0; y < r; y++)
+    {
+        for(int x = 0; x < c; x++)
+        {
+            room.matriz[y][x] = mtemp[y][x];
+        }
+    }
+
+    room.Norte.THb = 5;
+    room.Sur.requerimiento= R_Salidas::Llave;
+
+    
+
+    room.esEnemigo = true;
+    room.entidad1[0].x = 19;
+    room.entidad1[0].y = 2;
+    room.entidad1[0].IsVivo = true;
+    room.entidad1[0].TipoE = 0;
+
+}
+
+void Construir_Hb5(EstadoDelJuego& juego){
+    Hb& room = juego.habitaciones[5];
+
+    char mtemp[r][c] =
+    {
+        {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','W','I','N','N','E','R','.','.','.','.','.','.','.','.','#'},
+        {'W','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
+        {'#','#','#','#','#','#','#','#','#','#','S','#','#','#','#','#','#','#','#','#'}
+    };
+
+    for(int y = 0; y < r; y++)
+    {
+        for(int x = 0; x < c; x++)
+        {
+            room.matriz[y][x] = mtemp[y][x];
+        }
+    }
+
+     room.Norte.THb = 4;
+    room.Sur.requerimiento= R_Salidas::NA;
+
+    room.esEnemigo = false;
+    
+}
+
+
 
 void inHb(EstadoDelJuego& juego){
     Construir_Hb0(juego);
     Construir_Hb1(juego);
+    Construir_Hb2(juego);
+    Construir_Hb3(juego);
+    Construir_Hb4(juego);
+    Construir_Hb5(juego);
 }
 
 bool IsMuro(EstadoDelJuego& juego, int x, int y){
@@ -92,8 +247,12 @@ bool PuedeSalir(EstadoDelJuego& juego, Salidas& exit)
 
     if(exit.requerimiento == R_Salidas::Llave)
     {
-        return juego.player.ItemCargado ==
-               TipodeItem::Llave;
+        return juego.player.ItemCargado == TipodeItem::Llave;
+    }
+
+    if(exit.requerimiento == R_Salidas::Enemigo_Muerto){
+        Hb& room = juego.habitaciones[juego.Hb_Actual];
+        return !room.entidad1[0].IsVivo;
     }
 
     return false;
@@ -158,17 +317,27 @@ void DibujarMapa(EstadoDelJuego& juego){
                 continue;
             }
 
-            if(room.esEnemigo &&
-               room.entidad1.IsVivo &&
-               room.entidad1.x == x &&
-               room.entidad1.y == y)
-            {
-                std::cout <<
-                "\033[31m██\033[0m";
+            bool dibujadoEnemigo = false;
+            for(int i = 0; i < 2; i++){
+                Enemigo& enemigo = room.entidad1[i];
+                if(enemigo.IsVivo && enemigo.x == x && enemigo.y == y){
+                    if(enemigo.TipoE == 0){
+                        std::cout<< "\033[31m██\033[0m";
+                    }else if(enemigo.TipoE == 1){
+                        std::cout<< "\033[35m██\033[0m";
+                    }else if(enemigo.TipoE == 2){
+                        std::cout<< "\033[36m██\033[0m";
+                    }
 
-                continue;
+                    dibujadoEnemigo = true;
+
+                    break;
+                 }
             }
 
+            if(dibujadoEnemigo) continue;
+        
+    
             bool dibujadoObj = false;
 
             for(int i = 0; i < 8; i++)
@@ -237,15 +406,13 @@ void DibujarMapa(EstadoDelJuego& juego){
 
         std::cout << '\n';
     }
-
-    std::cout << '\n';
-
-    std::cout <<
-    "[WASD] Mover/Caminar | [E] Tomar | [F] Atacar (Cuando tienes la espada) | [Q] Soltar | [X] Salir del juego. \n";
+     std::cout << '\n';
+    std::cout <<"[WASD] Mover/Caminar | [E] Tomar | [F] Atacar (Cuando tienes la espada) | [Q] Soltar | [X] Salir del juego. \n";
+    std::cout << "[¬ Llave (algunas puertas necesitan llave)] | [-+] Espada (para acabar con los enemigos)";
     std::cout << "\nHP: ";
 
     for(int i = 0; i < juego.player.hP; i++){
-    std::cout << "[]";
+        std::cout << "[]";
     }
 
 std::cout << "\n";
@@ -253,72 +420,58 @@ std::cout << "\n";
 
 void ActualizarEnemigo(EstadoDelJuego& juego){
     Hb& room = juego.habitaciones[juego.Hb_Actual];
+    for(int i = 0; i < 2; i++){
+        Enemigo& enemigo = room.entidad1[i];
 
-    if(!room.esEnemigo)
-        return;
-
-    if(!room.entidad1.IsVivo)
-        return;
-
-    int dx = 0;
-    int dy = 0;
-
-    if(juego.player.x < room.entidad1.x)
-        dx = -1;
-
-    if(juego.player.x > room.entidad1.x)
-        dx = 1;
-
-    if(juego.player.y < room.entidad1.y)
-        dy = -1;
-
-    if(juego.player.y > room.entidad1.y)
-        dy = 1;
-
-    int newX = room.entidad1.x + dx;
-    int newY = room.entidad1.y + dy;
-
-    if(!IsMuro(juego, newX, newY))
-    {
-        room.entidad1.x = newX;
-        room.entidad1.y = newY;
-    }
-
-    if(room.entidad1.x == juego.player.x &&
-       room.entidad1.y == juego.player.y)
-    {
-        juego.player.hP--;
+        if(!enemigo.IsVivo){
+            continue;
+        }
+        if(enemigo.TipoE == 0){
+            if(juego.player.x < enemigo.x){
+                enemigo.x--;
+            }else if(juego.player.x > enemigo.x){
+                enemigo.x++;
+            }
+            if(juego.player.y < enemigo.y){
+                enemigo.y--;
+            }else if(juego.player.y > enemigo.y){
+                enemigo.y++;
+            }
+        }else if(enemigo.TipoE == 1){
+            if(juego.player.x < enemigo.x){
+                enemigo.x--;
+            }else if(juego.player.x > enemigo.x){
+                enemigo.x++;
+            }
+        }else if(enemigo.TipoE == 2){
+            if(juego.player.y < enemigo.y){
+                enemigo.y--;
+            }else if(juego.player.y > enemigo.y){
+                enemigo.y++;
+            }
+        }
+        if(enemigo.x == juego.player.x && enemigo.y == juego.player.y){
+            juego.player.hP--;
+        }
     }
 }
 
-void AtacarEnemigo(EstadoDelJuego& juego)
-{
-    Hb& room =
-    juego.habitaciones[juego.Hb_Actual];
+void AtacarEnemigo(EstadoDelJuego& juego){
+    Hb& room = juego.habitaciones[juego.Hb_Actual];
+    if(juego.player.ItemCargado != TipodeItem::Espada) return;
+    for(int i=0; i < 2; i++){
+        Enemigo& enemigo = room.entidad1[i];
+        if(!enemigo.IsVivo) continue;
 
-    if(!room.esEnemigo)
-        return;
+        int dx = enemigo.x - juego.player.x;
+        int dy = enemigo.y - juego.player.y;
 
-    if(!room.entidad1.IsVivo)
-        return;
+        if(dx < 0) dx = -dx;
+        if(dy < 0) dy = -dy;
 
-    if(juego.player.ItemCargado !=
-       TipodeItem::Espada)
-    {
-        return;
-    }
+        if(dx <=1 && dy <=1){
+            enemigo.IsVivo = false;
+        }
 
-    int dx =
-    room.entidad1.x - juego.player.x;
-
-    int dy =
-    room.entidad1.y - juego.player.y;
-
-    if(dx < 0) dx = -dx;
-    if(dy < 0) dy = -dy;
-
-    if(dx <= 1 && dy <= 1)
-    {
-        room.entidad1.IsVivo = false;
     }
 }
