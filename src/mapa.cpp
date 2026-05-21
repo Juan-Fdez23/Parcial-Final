@@ -77,7 +77,7 @@ void inHb(EstadoDelJuego& juego){
 bool IsMuro(EstadoDelJuego& juego, int x, int y){
     Hb& room = juego.habitaciones[juego.Hb_Actual];
 
-    char tile = room.matriz[r][c];
+    char tile = room.matriz[y][x];
 
     return tile == '#';
 }
