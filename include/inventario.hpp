@@ -8,10 +8,16 @@ struct inventario{
     bool IsActivo;
 };
 
+struct TipodeItem{
+    static const int Nada = 0;
+    static const int Llave = 1;
+    static const int Espada = 2;
+};
+
+
 struct EstadoDelJuego;
 
 void IniciarObj(EstadoDelJuego& juego);
 void TomarObj(EstadoDelJuego& juego);
 void BotarObj(EstadoDelJuego& juego);
 void ReiniciarObj(EstadoDelJuego& juego);
-
