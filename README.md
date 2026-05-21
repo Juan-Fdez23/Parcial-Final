@@ -6,3 +6,4 @@ Integrante: Juan David Fernández Pérez
 # Compilación 
 Windows (PowerShell): mingw32-make build -> mingw32-make run -> mingw32-make clean
 Linux: make build -> make run -> make clean
+
