@@ -3,7 +3,7 @@
 #include "../include/mapa.hpp"
 
 void ActualizarTerminal(){
-    std::cout << "\033[H";
+    std::cout << "\x1B[H";
 }
 
 void EsconderCursor(){
@@ -140,7 +140,7 @@ void Iniciar_Juego(EstadoDelJuego& juego){
     IniciarObj(juego);
 }
 
-void Shutdown_Game(EstadoDelJuego& juego){
+void Shutdown_Juego(EstadoDelJuego& juego){
     MostrarCursor();
     ActualizarTerminal();
 
@@ -162,7 +162,7 @@ void Juego_Loop(EstadoDelJuego& juego){
             return;
         }
 
-        ActualizarPosicionDelJugador(juego , tecla);
+        APDJ(juego , tecla);
 
         if(tecla == 'e')
             TomarObj(juego);
@@ -201,4 +201,5 @@ void Juego_Loop(EstadoDelJuego& juego){
 
     wait(100);
 }
+
 
