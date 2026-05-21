@@ -219,4 +219,3 @@ void Juego_Loop(EstadoDelJuego& juego){
 
     wait(100);
 }
-
