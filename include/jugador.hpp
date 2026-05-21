@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 struct jugador{
    int x, y;
    int ItemCargado;
@@ -7,5 +9,4 @@ struct jugador{
 };
 
 struct EstadoDelJuego;
-void ActualizarPosicionDelJugador(EstadoDelJuego& juego, char tecla);
-
+void APDJ(EstadoDelJuego& juego, char tecla);
