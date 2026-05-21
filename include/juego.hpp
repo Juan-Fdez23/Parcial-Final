@@ -4,17 +4,18 @@
 
 #include "jugador.hpp"
 #include "inventario.hpp"
-#include "mapa.hpp"
 
+#ifdef _WIN32
+    #include <conio.h>
+    #include <windows.h>
+#else
+    #include <unistd.h>
+    #include <termios.h>
+    #include <fcntl.h>
+#endif
 
-struct EstadoDelJuego{
-    jugador player;
-    inventario item[8];
-    Hb habitaciones[6];
-    int Hb_Actual;
-    int Velocidad_Enemigo;
-    bool JuegoEnLoop;
-};
+struct EstadoDelJuego;
+
 
 void Iniciar_Juego(EstadoDelJuego& juego);
 void Shutdown_Juego(EstadoDelJuego& juego);
@@ -24,5 +25,6 @@ void ActualizarTerminal();
 void EsconderCursor();
 void MostrarCursor();
 void EnableUTF8();
+void wait();
 bool TeclaPresionada();
 char LeerTecla();
