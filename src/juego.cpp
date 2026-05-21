@@ -199,7 +199,24 @@ void Juego_Loop(EstadoDelJuego& juego){
         juego.JuegoEnLoop = false;
     }
 
-    wait(100);
+    if(juego.Hb_Actual >= 5)
+{
+    ActualizarTerminal();
+
+    std::cout
+    << "\n\n";
+
+    std::cout
+    << "   WINNER\n";
+
+    std::cout
+    << " Juego completado.\n";
+
+    juego.JuegoEnLoop = false;
+
+    return;
 }
 
+    wait(100);
+}
 
