@@ -19,13 +19,22 @@ struct R_Salidas{
 
 struct Hb{
     char matriz[r][c];
-    Enemigo entidad1;
+    Enemigo entidad1[2];
 
     bool esEnemigo;
     Salidas Norte;
     Salidas Sur;
     Salidas Este;
     Salidas Oeste;
+};
+
+struct EstadoDelJuego{
+    jugador player;
+    inventario item[8];
+    Hb habitaciones[6];
+    int Hb_Actual;
+    int Velocidad_Enemigo;
+    bool JuegoEnLoop;
 };
 
 void inHb(EstadoDelJuego& juego);
@@ -36,4 +45,3 @@ void TransicionDeHb(EstadoDelJuego& juego);
 
 void ActualizarEnemigo(EstadoDelJuego& juego);
 void AtacarEnemigo(EstadoDelJuego& juego);
-
